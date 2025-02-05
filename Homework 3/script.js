@@ -34,5 +34,5 @@ console.log("Prices of food that are over 20:")
 console.log(pricesOver20);
 console.log("Food that has a discount:")
 console.log(discountedProd);
-console.log(`Prices of products ${foodDiscount} that have a dicount.`);
+console.log(`Prices of products that have a dicount: ${foodDiscount}`);
 console.log(`Name and price of food that does not have a discount ${findNameAndPriceOfAllProductsWithANameStartingWithAVowelThatDontHaveADiscount}`);
