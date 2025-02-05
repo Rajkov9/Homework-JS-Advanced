@@ -27,12 +27,16 @@ let vowels = ["a", "e", "i", "o", "u"];
 
 let pricesOver20 = prods.filter( prod => prod.price > 20);
 let discountedProd = prods.filter( prod => prod.hasDiscount);
-let foodDiscount = prods.filter( prod => prod.category === 'Food' && prod.hasDiscount).map(prod => prod.name);
-let findNameAndPriceOfAllProductsWithANameStartingWithAVowelThatDontHaveADiscount = prods.filter(prod => prod.name.toLowerCase(vowels) && !prod.hasDiscount).map(prod => prod.name);
+let foodDiscount = prods.filter( prod => prod.category === 'Food' && prod.hasDiscount && prod.price).map(prod => ({ name: prod.name, price: prod.price }))
+let findNameAndPriceOfAllProductsWithANameStartingWithAVowelThatDontHaveADiscount = prods.filter(prod => {
+    return vowels.includes(prod.name[0].toLowerCase()) && !prod.hasDiscount;
+}).map(prod => ({ name: prod.name, price: prod.price }));
 
 console.log("Prices of food that are over 20:")
 console.log(pricesOver20);
 console.log("Food that has a discount:")
 console.log(discountedProd);
 console.log(`Prices of products that have a dicount: ${foodDiscount}`);
-console.log(`Name and price of food that does not have a discount ${findNameAndPriceOfAllProductsWithANameStartingWithAVowelThatDontHaveADiscount}`);
+console.log(foodDiscount);
+console.log(`Name and price of food that does not have a discount and it starts with a vowel ${findNameAndPriceOfAllProductsWithANameStartingWithAVowelThatDontHaveADiscount}`);
+console.log(findNameAndPriceOfAllProductsWithANameStartingWithAVowelThatDontHaveADiscount);
