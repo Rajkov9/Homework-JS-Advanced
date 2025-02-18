@@ -9,7 +9,7 @@ function Person(id, firstName, lastName, age){
 }
 
 function Animal(name, age){
-    this.name = name ? "Unnamed" : name;
+    this.name = !name ? "Unnamed" : name;
     this.age = age;
     this.eat =function(){
      console.log(`${name} is eating`);
@@ -25,6 +25,10 @@ function Cat(name, age, color, ownerId){
     this.ownerId = ownerId;
     this.meow = function(){
         console.log(`The cat ${this.name} says Meow`);
+    };
+    this.getOwnerDetails = function (people) {
+        let catOwnerID = people.filter(person => person.id === this.ownerId).map(person => person.getFullName());
+        console.log(catOwnerID.length > 0 ? catOwnerID[0] : "The cat does not have an owner");
     }
 }
 
@@ -38,9 +42,15 @@ let people =[
 
 let cat = new Cat("Garfield", 4, "brown", 1)
 console.log(cat);
+cat.meow();
+cat.sleep();
+cat.getOwnerDetails(people);
 
 let cat2 = new Cat("Tom", 5, "gray", 5)
 console.log(cat2);
+cat2.meow();
+cat2.eat();
+cat2.getOwnerDetails(people);
 
 function PersianCat(eyeColor, name, age, color, ownerId){
     Object.setPrototypeOf(this, new Cat(name, age, color, ownerId));
@@ -56,9 +66,19 @@ function RagDollCat(weight, isFriendly, name, age, color, ownerId){
     this.isFriendly = isFriendly;
     this.printPersonality = function(){
         if(isFriendly === true){
-            console.log(`${this.name} is friendly!`);
+            console.log(`${this.name} the cat is friendly!`);
         } else{
-            console.log(`${this.name} is not friendly!`);
+            console.log(`${this.name} the cat is not friendly!`);
         }
     }
 }
+
+let persianCat = new PersianCat("blue", "Duchess", 4, "white and gray", 2);
+console.log(persianCat);
+persianCat.funDescription();
+persianCat.getOwnerDetails(people);
+
+let ragDollCat = new RagDollCat(9, true, "Jasper", 10, "red", 4);
+console.log(ragDollCat);
+ragDollCat.printPersonality();
+ragDollCat.getOwnerDetails(people);
