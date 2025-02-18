@@ -38,7 +38,8 @@ let people =[
     new Person(3, "Patrick", "Stevens", 35),
     new Person (4, "Rebecca", "Winters", 24),
     new Person(5, "Emily", "Magnussen", 30)
-]
+];
+console.log(people);
 
 let cat = new Cat("Garfield", 4, "brown", 1)
 console.log(cat);
